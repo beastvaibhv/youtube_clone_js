@@ -1,0 +1,554 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  list-style: none;
+}
+body::-webkit-scrollbar {
+  display: none; /* width of the entire scrollbar */
+}
+:root {
+  --black: #000000;
+  --gray-black: #121212;
+  --gray-medium: #212121;
+  --gray-light: #303030;
+}
+
+header {
+  background-color: #212121;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1.5px solid #303030;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logoRight {
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
+  height: 100%;
+  margin-left: 40px;
+  gap: 1rem;
+}
+.bars {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  /* background-color: blue; */
+  gap: 0.3rem;
+}
+.fa-youtube {
+  color: red;
+  font-size: 22px;
+}
+.YtText {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.SearchBar {
+  display: flex;
+  width: 550px;
+  height: 45px;
+  align-items: center;
+  /* background-color: blue; */
+  justify-content: space-between;
+}
+
+.searchBtn {
+  background-color: #303030;
+  height: 100%;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: none;
+  border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.searchBtn:hover {
+  background-color: var(--gray-black);
+}
+.mic {
+  background-color: var(--black);
+  height: 100%;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  margin-left: 10px;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+}
+.mic:hover {
+  background-color: var(--gray-light);
+}
+
+.searchInput {
+  background-color: #121212;
+  height: 100%;
+  color: #aaaaaa;
+  flex-grow: 1;
+  padding-left: 20px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  border: 1.5px solid #303030;
+}
+
+.ProfileRight {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+  height: 100%;
+  gap: 1.5rem;
+}
+.ProfileRight a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+.ProfileRight a:hover {
+  /* transform: rotate(5deg); */
+  transform: scale(1.1);
+}
+.ProfileRight a img {
+  width: 19px;
+}
+#createVid > img {
+  width: 25px;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.fa-video,
+.fa-list-ul,
+.fa-bell {
+  color: white;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* Main screeen */
+
+.mainScreen {
+  background-color: var(--gray-black);
+  width: 100%;
+  height: 89vh;
+  display: flex;
+  position: relative;
+}
+
+.leftNavBar {
+  width: 15%;
+  background-color: var(--gray-medium);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  transition: all 0.3s linear;
+}
+
+.leftNavBar::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
+}
+
+/* .leftNavBar::-webkit-scrollbar-track {
+         color of the tracking area
+} */
+
+.leftNavBar::-webkit-scrollbar-thumb {
+  background-color: #4e4e4e; /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  /* creates padding around scroll thumb */
+}
+
+.homeExplore {
+  margin-top: 5px;
+}
+.homeExplore,
+.library {
+  /* background-color: red; */
+  width: 100%;
+  border-bottom: 1.5px solid var(--gray-light);
+  padding-bottom: 5px;
+}
+.library {
+  padding-top: 10px;
+}
+
+#activeNav {
+  background-color: var(--gray-light);
+}
+
+.navs {
+  width: 257px;
+  /* background-color: blueviolet; */
+  display: flex;
+  gap: 1.5rem;
+  padding: 13px 0 13px 0;
+  /* margin-top: 10px; */
+  color: white;
+  text-decoration: none;
+  align-items: center;
+  border-radius: 3px;
+  font-size: 17px;
+  font-weight: 300;
+  padding-left: 40px;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 5px;
+  overflow-x: hidden;
+}
+.navs:hover {
+  background-color: var(--gray-light);
+}
+.navs a {
+  width: max-content;
+  overflow-x: hidden;
+}
+.navs img {
+  width: 20px;
+}
+
+/* **********************  Main video Container============ */
+.rightVideosCard {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  height: 100%;
+  background-color: var(--gray-black);
+  /* background-color: green; */
+  transition: all 0.3s linear;
+
+  /* overflow-y: scroll; */
+}
+
+
+.suggestionHeading {
+  width: 100%;
+  height: 60px;
+  background-color: var(--gray-black);
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  overflow-x: scroll;
+  /* margin-bottom: 22px; */
+  position: sticky;
+  top: 0;
+  padding: 0 25px 0 25px;
+}
+
+.suggestionHeading .items {
+  padding: 8px 15px;
+  background-color: var(--gray-medium);
+
+  border-radius: 10px;
+}
+.items a {
+  color: white;
+  width: max-content;
+}
+.suggestionHeading::-webkit-scrollbar {
+  display: none; /* width of the entire scrollbar */
+}
+
+/* Video Card */
+
+.VideoCardsHolder {
+  display: grid;
+  width: 100%;
+  height: 87%;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+  grid-row-gap: 15px;
+  grid-column-gap: 25px;
+  padding: 0 25px 0 25px;
+  /* background-color: pink; */
+  overflow-y: scroll;
+}
+.VideoCardsHolder::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
+}
+
+/* .leftNavBar::-webkit-scrollbar-track {
+         color of the tracking area
+} */
+
+.VideoCardsHolder::-webkit-scrollbar-thumb {
+  background-color: #4e4e4e; /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  /* creates padding around scroll thumb */
+}
+
+.videoCard {
+  /* background-color: aqua; */
+
+  width: 325px;
+  /* border: 1px solid var(--gray-light); */
+  border-radius: 11px;
+}
+.bottomCard {
+  width: 100%;
+  margin-top: 5px;
+  /* background-color: orange; */
+
+  display: flex;
+  gap: 1.2rem;
+}
+.thumbnail{
+  position: relative;
+  /* background-color: red; */
+  width: 340px;
+  height: 190px;
+}
+.timeStamp{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.thumbImg{
+  width: 100%;
+  height: 100%;
+  
+  border-radius: 10px;
+}
+.channelDP img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.titleDisc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.vidTitle {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+}
+.channelName {
+  color: gray;
+  font-size: 14px;
+  font-weight: 500;
+}
+.uploadTime {
+  color: gray;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: 56px;
+    justify-content: center;
+  }
+  .leftNavBar{
+    display: none;
+  }
+  .rightVideosCard {
+    width: 100%;
+  }
+  .fa-youtube {
+    font-size: 22px;
+  }
+  .logoText{
+    display: flex;
+    align-items: center;
+  }
+  .YtText {
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .leftNavBar {
+    width: 0;
+  }
+  .searchInput{
+    display: none;
+  }
+  .mic {
+    display: none;
+  }
+  #dots {
+    display: none;
+  }
+  #createVid {
+    display: none;
+  }
+  .bars {
+    display: none;
+  }
+  .notiBell{
+    display: none;
+  }
+
+  .SearchBar {
+    margin-left: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .searchBtn {
+    height: 0;
+    width: 0;
+    
+    font-size: 20px;
+  }
+  
+  .profile {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ProfileRight {
+    margin-right: 20px;
+  }
+  .logoRight {
+    margin-left: 20px;
+  }
+
+  .suggestionHeading {
+    padding: 0 15px 0 15px;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+
+  .VideoCardsHolder {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 15px;
+    justify-content: center;
+  }
+  .videoCard {
+
+    width: 326px;
+    border-radius: 11px;
+  }
+
+  .mainScreen {
+    height: 93vh;
+  }
+} 
+
+
+/* @media only screen and (max-width: 600px) {
+  header {
+    height: 60px;
+  }
+  .rightVideosCard {
+    width: 100%;
+  }
+  .leftNavBar {
+    width: 0;
+  }
+  .logoRight{
+    display: none;
+  }
+  .mic {
+    display: none;
+  }
+  #dots {
+    display: none;
+  }
+  #createVid {
+    display: none;
+  }
+  .notiBell {
+    display: none;
+  }
+  .bars {
+    display: none;
+  }
+  .SearchBar{
+    margin-left: 20px;
+  }
+
+  .searchBtn {
+    width: 65px;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+  .searchInput {
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+  }
+
+
+
+  .ProfileRight {
+    width: 50px;
+  }
+  .ProfileRight {
+    gap: 1.2rem;
+  }
+  .profile {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ProfileRight {
+    margin-right: 20px;
+  }
+  .logoRight {
+    margin-left: 20px;
+  }
+
+  .suggestionHeading {
+    padding: 0 15px 0 15px;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+
+  .VideoCardsHolder {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 15px;
+    justify-content: center;
+  }
+  .videoCard {
+    width: 365px;
+    border-radius: 11px;
+  }
+
+  .mainScreen {
+    height: 93vh;
+  }
+} */

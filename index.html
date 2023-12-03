@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="./assets/images/Group.svg" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <title>Youtube Clone</title>
+<body>
+    <header>
+      <div class="logoRight"  >
+        <a class="bars" href=""><img src="./assets/images/hamburger.svg" alt=""></a>
+        <a href="#" class="logoText">
+          <img src="./assets/images/Youtube-Logo.svg" alt="">
+        </a>
+      </div>
+
+      <!-- Search  Bar -->
+      <div class="SearchBar"  >
+        <input type="text" placeholder="Search" class="searchInput">
+        <button class="searchBtn" href="#"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="#" class="mic"><i class="fa-solid fa-microphone"></i></a>
+      </div>
+
+      <div class="ProfileRight"  >
+        <a href="#" id="createVid"><img src="assets/images/u1.svg" alt=""></a>
+        <a id="dots" href="#"><img src="assets/images/apps.svg" alt=""></a>
+        <a href="#"><img class="notiBell" src="assets/images/Notifications.svg" alt=""></a>
+        <img class="profile" src="assets/images/Profile-pic.svg" alt="Profile">
+      </div>
+    </header>
+
+    <div class="mainScreen"  >
+      <!-- Side Navigation Bar -->
+      <div class="leftNavBar"  >
+        <!-- Home Explorer-->
+        <div class="homeExplore"  >
+          <a id="activeNav" class="navs" href="#">
+            <img src="assets/images/home.svg" alt="">
+            <p>Home</p>
+          </a>
+
+          <a class="navs" href="#">
+            <img src="assets/images/explore.svg" alt="">
+            <p>Explore</p>
+          </a>
+          <a class="navs" href="#">
+            <img src="assets/images/Icon1.svg" alt="">
+            <p>Subscriptions</p>
+          </a>
+        </div>
+
+        <div class="library"  >
+          <a class="navs" href="#">
+            <img src="assets/images/Icon2.svg" alt="">
+            <p>Library</p>
+          </a>
+
+          <a class="navs" href="#">
+            
+            <img src="assets/images/Icon4.svg" alt="">
+            <p>History</p>
+          </a>
+          <a class="navs" href="#">
+            <img src="assets/images/Icon3.svg" alt="">
+            <p>Your Videos</p>
+          </a>
+          <a class="navs" href="#">
+            <img src="assets/images/Icon5.svg" alt="">
+            <p>Watch Later</p>
+          </a>
+
+          <a class="navs" href="#">
+            <img src="assets/images/Icon6.svg" alt="">
+            <p>Liked Videos</p>
+          </a>
+          <a class="navs" href="#">
+            <img src="assets/images/arrowBottom.svg" alt="">
+            <p>Show More</p>
+          </a>
+        </div>
+        <div class="subscription library"  >
+            <a class="navs" href="#">
+                
+                <p>SUBSCRIPTIONS</p>
+              </a>
+            <a class="navs" href="#">
+                <img src="assets/images/User.svg" alt="">
+                <p>James Gouse</p>
+              </a>
+    
+              <a class="navs" href="#">
+                
+                <img  src="assets/images/IconAlanCooper.svg" alt="">
+                <p>Alan Cooper</p>
+              </a>
+              <a class="navs" href="#">
+                <img  src="assets/images/Iconmarcus.svg" alt="">
+                <p>Marcus Levin</p>
+              </a>
+              <a class="navs" href="#">
+                <img  src="assets/images/IconAlexis.svg" alt="">
+                <p>Alexis Sears</p>
+              </a>
+    
+              <a class="navs" href="#">
+                <img src="assets/images/Iconjessica.svg" alt="">
+                <p>Jesica Lambert</p>
+              </a>
+              <a class="navs" href="#">
+                <img  src="assets/images/IconAnna .svg" alt="">
+                <p>Anna White</p>
+              </a>
+              <a class="navs" href="#">
+                <img src="assets/images/IconSkylar.svg" alt="">
+                <p>Skylar Dias</p>
+              </a>
+              <a class="navs" href="#">
+                <img src="assets/images/arrowBottom.svg" alt="">
+                <p>Show 13 more</p>
+              </a>
+        </div>
+        <div class="morefromYt library"  >
+            <a class="navs" href="#">
+                
+                <p>MORE FROM YOUTUBE</p>
+              </a>
+            <a class="navs" href="#">
+                <img src="assets/images/Iconytp.svg" alt="">
+                <p>Youtube Premium</p>
+              </a>
+    
+              <a class="navs" href="#">
+                <img src="assets/images/gaminggame.svg" alt="">
+                <p>Gaming</p>
+              </a>
+              <a class="navs" href="#">
+                <img src="assets/images/livelive.svg" alt="">
+                <p>Live</p>
+              </a>
+              <a class="navs" href="#">
+                <img src="assets/images/Iconpod.svg" alt="">
+                <p>Podcasts</p>
+              </a>
+              
+        </div>
+      </div>
+
+      <!-------------------------- Main Video Container --------------------->
+      <div class="rightVideosCard"  >
+        <div class="suggestionHeading"  >
+          <div class="items"  >
+            <a href="">All</a>
+          </div>
+          <div class="items"  >
+            <a href="">Music</a>
+          </div>
+          <div class="items"  >
+            <a href="">Gaming</a>
+          </div>
+          <div class="items"  >
+            <a href="">JavaScript</a>
+          </div>
+          <div class="items"  >
+            <a href="">CSS</a>
+          </div>
+          <div class="items"  >
+            <a href="">Java</a>
+          </div>
+          <div class="items"  >
+            <a href="">DSA</a>
+          </div>
+          <div class="items"  >
+            <a href="">Trailers</a>
+          </div>
+          <div class="items"  >
+            <a href="">India</a>
+          </div>
+          <div class="items"  >
+            <a href="">cartoon</a>
+          </div>
+          <div class="items"  >
+            <a href="">ben</a>
+          </div>
+          <div class="items"  >
+            <a href="">kohli</a>
+          </div>
+          <div class="items"  >
+            <a href="">India</a>
+          </div>
+          <div class="items"  >
+            <a href="">program</a>
+          </div>
+          <div class="items"  >
+            <a href="">News</a>
+          </div>
+          <div class="items"  >
+            <a href="">Web Dev</a>
+          </div>
+          <div class="items"  >
+            <a href="">Live</a>
+          </div>
+        </div>
+
+        <!---------------------- Video Cards---------------- -->
+        <div class="VideoCardsHolder"  ></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  
+
+</body>
+</html>
