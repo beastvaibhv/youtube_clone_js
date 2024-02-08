@@ -110,6 +110,21 @@
                   </div>
                 </div>
             </div>
+            <div class="comment">
+              <div class="cmnt-top">
+                <span class="cmnt-num"></span>
+                <span class="sort"><img src="./assets/images/Iconsort.svg" alt=""> Sort By</span>
+              </div>
+              <div class="write">
+                <span><img src="./assets/images/Profile-pic.svg" alt="user"></span>
+                <span class="write-cmnt">Add a public comment</span>
+              </div>
+              <div class="video-cmnt">
+
+              </div>
+
+
+            </div>
             
 
         </div>
@@ -134,7 +149,6 @@
     const storedData = JSON.parse(localStorage.getItem('selectedVideoTitleAndId'))    
     if (storedData) {
     const { title: videoTitle, id: videoID, channelName: videoChannelName  } = storedData;
-    console.log(videoChannelName);
     fetchAndDisplayVideo(videoID);
     chanelName.textContent = videoChannelName;
     
@@ -148,10 +162,16 @@
 
 
 
-
 function fetchAndDisplayVideo(videoId) {
 embedVideo(videoId);
 getVideoStatistics(videoId);
+//line 251
+fetchVideoComments(videoId)
+  .then(comments => {
+    displayVideoComment(comments);
+    
+    // Process the comments further or update UI
+  });
 /*apiUrl = `${baseUrl}/videos/id=${videoId}&key=${apiKey}&part=snippet`
     fetch(apiUrl)
         .then(response => response.json())
@@ -185,6 +205,8 @@ function embedVideo(videoId) {
 const views= document.querySelector('.time');
 const likes = document.querySelector('.element');
 const dislikes = document.querySelector('.dislike');
+const comntCount = document.querySelector('.cmnt-num');
+
 
 async function getVideoStatistics(videoId) {
   const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`;
@@ -194,21 +216,13 @@ async function getVideoStatistics(videoId) {
     const data = await response.json();
 
     if (data.items && data.items.length > 0) {
-      console.log(data.items);
+      
       const statistics = data.items[0].statistics;
-      console.log(statistics.viewCount, statistics.likeCount);
+      
       views.textContent = `${statistics.viewCount} views . Oct 8, 2021`;
       likes.textContent = `${statistics.likeCount/1000} k`;
-      
-      return {
-
-        
-        
-        
-        favorites: statistics.favoriteCount,
-        comments: statistics.commentCount,
-        
-      };
+      comntCount.textContent = `${statistics.commentCount} Comments`;
+     
     } else {
       throw new Error('Video not found or statistics unavailable.');
     }
@@ -219,7 +233,39 @@ async function getVideoStatistics(videoId) {
 }
  
 
+function fetchVideoComments(videoId) {
+  const apiUrl = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${apiKey}`;
 
+  return fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      return data.items;
+      
+    })
+    .catch(error => {
+      console.error('Error fetching video comments:', error);
+      return [];
+    });
+}
+
+const commentContainer = document.querySelector(".video-cmnt")
+function displayVideoComment(comments){
+
+  comments.map(cmnt => {
+    const commentText = document.createElement('div');
+    const comment = cmnt.snippet.topLevelComment.snippet.textOriginal;
+    const authorName = cmnt.snippet.topLevelComment.snippet.authorDisplayName;
+    commentText.innerHTML =`<div class='comment-text'>
+      <span class="cmnt-img" ><img src="./assets/images/IconAlanCooper.svg" alt="user-image"></span>
+      <span>
+        <div class="cmnt-user-name"> ${authorName}</div>
+        <p>${comment}<p/>
+          </span>
+      </div>`
+    commentContainer.appendChild(commentText);
+  })
+}
       </script>
     
 </body>

@@ -126,11 +126,11 @@ function calculateTheTimeGap(publishTime) {
 async function fetchSearchResults(searchString) {
   //searcString is the search input user entering
   const endPoint = `${baseUrl}/search?key=${apiKey}&q=${searchString}&part=snippet&maxResults=60`;
-  console.log(`searchValue ${searchString}`);
+  console.log(`searchValue:  ${searchString}`);
   try {
     const response = await fetch(endPoint);
     const result = await response.json();
-    console.log(result);
+    
 
     renderVideosOntoUI(result.items);
   } catch (error) {

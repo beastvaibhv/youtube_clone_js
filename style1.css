@@ -172,6 +172,8 @@ iframe{
 }
 
 .subscribe{
+  border-top: 1px grey;
+  border-bottom: 1px grey;
   background-color: azure;
   margin: 0.5rem;
   margin-left: 0rem;
@@ -224,4 +226,45 @@ iframe{
   12px 0px 0px 64px;
 }
 
+.cmnt-top{
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.sort{
+  display: flex;
+  align-items: center;
+}
+.write{
+  display: flex;
+  justify-content: flex-start;
+  gap:1rem;
+  align-items: center;
+  padding-bottom: 1rem;
+
+}
+.write-cmnt{
+ width:660px;
+ border-bottom: 1px solid gray;
+}
+
+.video-cmnt{
+  margin-top: 1rem;
+  width: 660px;
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
+}
+
+.comment-text{
+  height: auto;
+  display: flex;
+  align-items: start;
+  gap:1.5rem;
+  
+}
 
