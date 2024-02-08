@@ -259,9 +259,10 @@ function displayVideoComment(comments){
     commentText.innerHTML =`<div class='comment-text'>
       <span class="cmnt-img" ><img src="./assets/images/IconAlanCooper.svg" alt="user-image"></span>
       <span>
-        <div class="cmnt-user-name"> ${authorName}</div>
+        <div class="cmnt-user-name"> <span><b>${authorName}</b> </span> <span>${time} ago</span> </div>
         <p>${comment}<p/>
           </span>
+        
       </div>`
     commentContainer.appendChild(commentText);
   })
