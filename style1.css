@@ -1,0 +1,227 @@
+:root {
+    --background-color: rgba(33, 33, 33, 1);
+    --white-color: rgba(255, 255, 255, 1);
+    --gray-color: rgba(170, 170, 170, 1);
+    --background-color-2: rgba(18, 18, 18, 1);
+    --border-color: rgba(48, 48, 48, 1);
+    --black: rgba(0, 0, 0, 1);
+  }
+
+.video-page-container{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+ 
+
+}
+iframe{
+  width: 48rem;
+  height: 22.5rem;
+}
+
+.suggestion-container{
+  height: 100vh;
+  background-color: red;
+  width: 20rem;
+}
+.video-info {
+  display: inline-flex;
+  width: 48rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 0px 8px;
+  position: relative;
+}
+
+.video-info .title {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 3px 0px 2px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.text-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  
+  font-size: 18px;
+  letter-spacing: 0.18px;
+  line-height: normal;
+  white-space: nowrap;
+}
+.video-cmnts-container{
+  margin: 1rem;
+}
+.info {
+
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  
+}
+
+.video-info .info-text {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-info .time {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+ 
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+.info>div{
+  display: flex;
+  justify-content: space-between;
+}
+.video-info .top-level {
+  display: inline-flex;
+  margin-left: 5rem;
+  align-items: flex-end;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  left: 266px;
+}
+
+.video-info .button {
+  all: unset;
+  box-sizing: border-box;
+  padding: 2px 0px;
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.video-info .button-btn {
+  gap: 10px;
+  padding: 6px;
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.video-info .video-page-icons {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.video-info .button-text {
+  gap: 10px;
+  padding: 10px 6px 10px 0px;
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.video-info .element {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+ 
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.video-info .element-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  gap: 10px;
+  padding: 10px 6px 10px 0px;
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.video-info .div {
+  padding: 2px 0px;
+  display: inline-flex;
+  align-items: flex-start;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.subscribe{
+  background-color: azure;
+  margin: 0.5rem;
+  margin-left: 0rem;
+  width: 770px;
+}
+.channel{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.channel-left{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.channel-basic{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+
+
+}
+.channel-name{
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.channel-suscriber{
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+}
+.suscribe-btn{
+  width: 125px;
+  height: 50px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.channel-about{
+  width: 760px;
+  padding: 
+  12px 0px 0px 64px;
+}
+
+

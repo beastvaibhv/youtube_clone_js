@@ -78,18 +78,19 @@ updateSizeInfo();
 
 
 // video cards adding dynamically--------------------
-const apiKey = "AIzaSyCOzdiObyNRRonxDD24O20i0TcZY-dth20";
+const apiKey = "AIzaSyDZZXYwbbcNDrORLcYJDhwccxIhr2Lxla8";
 const baseUrl = "https://www.googleapis.com/youtube/v3";
 
 // THis function will take video id and returns the statics of the video
 
 async function getVideoStatistics(videoId) {
-  // https://www.googleapis.com/youtube/v3/search?key={apiKey}&part=snippet&q=js&type=video
+  
   const endpoint = `${baseUrl}/videos?key=${apiKey}&part=statistics&id=${videoId}`;
 
   try {
     const response = await fetch(endpoint);
     const result = await response.json();
+    console.log(result.item[0].statistics, "hello");
     return result.item[0].statistics;
   } catch (error) {
     console.log("failed to load statistics");
@@ -120,40 +121,12 @@ function calculateTheTimeGap(publishTime) {
   return `${Math.ceil(secondsGap / secondsPerYear)} years ago`;
 }
 
-function renderVideosOntoUI(videosList) {
-  VideoCardsHolder.innerHTML = "";
-  //videosList will be an array of videos objects
-  videosList.forEach((video) => {
-    videoCard = document.createElement("div");
-    videoCard.className = "videoCard";
-    videoCard.innerHTML = `
-    <div class="thumbnail">
-    <img class="thumbImg" 
-    src="${video.snippet.thumbnails.high.url}"
-     alt="thumbnail" />
-    <p class="timeStamp">5:10</p>
-  </div>
-  <div class="bottomCard">
-    <div class="channelDP">
-      <img src="imgs/User-Avatar-1.png" alt="channelLogo" />
-    </div>
-    <div class="titleDisc">
-      <p class="vidTitle">
-       ${video.snippet.title}
-      </p>
-      <p class="channelName">${video.snippet.channelTitle}</p>
-      <p class="uploadTime">35M views • ${calculateTheTimeGap(video.snippet.publishTime)}</p>
-    </div>
-  </div>`;
 
-    VideoCardsHolder.appendChild(videoCard);
-  });
-}
 
-async function fetchSearchResults(searcString) {
+async function fetchSearchResults(searchString) {
   //searcString is the search input user entering
-  const endPoint = `${baseUrl}/search?key=${apiKey}&q=${searcString}&part=snippet&maxResults=10`;
-  console.log(`searchValue ${searcString}`);
+  const endPoint = `${baseUrl}/search?key=${apiKey}&q=${searchString}&part=snippet&maxResults=60`;
+  console.log(`searchValue ${searchString}`);
   try {
     const response = await fetch(endPoint);
     const result = await response.json();
@@ -161,7 +134,7 @@ async function fetchSearchResults(searcString) {
 
     renderVideosOntoUI(result.items);
   } catch (error) {
-    alert("10,000 query per day exhausted");
+    
   }
 }
 
@@ -170,4 +143,65 @@ searchBtn.addEventListener("click", () => {
   console.log(searchValue);
   fetchSearchResults(searchValue);
 });
-fetchSearchResults("Ben 10 omnitrix full episodes");
+
+searchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const searchValue = searchInput.value;
+    console.log(searchValue);
+    fetchSearchResults(searchValue);
+  }
+});
+fetchSearchResults("people are amazing");
+
+
+function renderVideosOntoUI(videosList) {
+  VideoCardsHolder.innerHTML = "";
+  //videosList will be an array of videos objects
+  videosList.forEach((video) => {
+    videoCard = document.createElement("div");
+    videoCard.addEventListener("click", (event)=>{
+      console.log("clicked")
+       event.preventDefault();
+       const videoIdToSave = video.id.videoId;
+       getVideoStatistics(videoIdToSave);
+       
+       openVideoPage(videoIdToSave, video.snippet.title, video.snippet.channelTitle);
+     },{passive:true})
+    videoCard.className = "videoCard";
+    
+    videoCard.innerHTML = `
+    
+    <div class="thumbnail">
+    <img class="thumbImg" 
+    src="${video.snippet.thumbnails.high.url}"
+     alt="thumbnail" />
+    <p class="timeStamp">5:10</p>
+  </div>
+  <div class="bottomCard">
+    <div class="channelDP">
+      <img src="./assets/images/User.svg" alt="channelLogo" />
+    </div>
+    <div class="titleDisc">
+      <p class="vidTitle">
+       ${video.snippet.title}
+      </p>
+      <p class="channelName">${video.snippet.channelTitle}</p>
+      <p class="uploadTime">35M views • ${calculateTheTimeGap(video.snippet.publishTime)}</p>
+    </div>
+  </div>
+  `;
+
+    VideoCardsHolder.appendChild(videoCard);
+  });
+}
+const videoCardTiles = document.getElementsByClassName("videoCard");
+
+
+
+function openVideoPage(videoId, vidTitle, videoChannelName){
+  //localStorage.setItem("selectedVideoTitle",vidTitle);
+  localStorage.setItem('selectedVideoTitleAndId', JSON.stringify({ title: vidTitle, id: videoId, channelName: videoChannelName }));
+
+  window.location.href = "videoPage.html";
+}
+
