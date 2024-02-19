@@ -144,6 +144,14 @@
 
   const vidTitle = document.querySelector('.text-wrapper');
   const chanelName = document.querySelector('.channel-name');
+  const commentContainer = document.querySelector(".video-cmnt");
+  const videoContainer = document.querySelector('.video-container');
+  const views= document.querySelector('.time');
+  const likes = document.querySelector('.element');
+  const dislikes = document.querySelector('.dislike');
+  const comntCount = document.querySelector('.cmnt-num');
+
+
   document.addEventListener('DOMContentLoaded', () => {
     
     const storedData = JSON.parse(localStorage.getItem('selectedVideoTitleAndId'))    
@@ -153,6 +161,7 @@
     chanelName.textContent = videoChannelName;
     
     vidTitle.textContent = videoTitle;
+    fetchRelevantResults(videoTitle);
 
   } else {
     console.log('No video details found in localStorage.');
@@ -165,30 +174,17 @@
 function fetchAndDisplayVideo(videoId) {
 embedVideo(videoId);
 getVideoStatistics(videoId);
-//line 251
+
 fetchVideoComments(videoId)
   .then(comments => {
     displayVideoComment(comments);
-    
-    // Process the comments further or update UI
   });
-/*apiUrl = `${baseUrl}/videos/id=${videoId}&key=${apiKey}&part=snippet`
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const videoData = data.items[0].snippet;
-            console.log('Video Title:', videoData.title);
-            console.log('Channel Title:', videoData.channelTitle);
-            // Access other video details as needed
-        })
-        .catch(error => console.error('Error fetching video data:', error));
 
-*/
-    
 }
 
-const videoContainer = document.querySelector('.video-container');
 
+
+//Adding IFrame tag by fetcching the video if from the local storage
 
 function embedVideo(videoId) {
     videoContainer.innerHTML = '';
@@ -202,18 +198,17 @@ function embedVideo(videoId) {
   iEmbed.allowFullscreen = true; // Allow fullscreen mode
   videoContainer.appendChild(iEmbed);
 }
-const views= document.querySelector('.time');
-const likes = document.querySelector('.element');
-const dislikes = document.querySelector('.dislike');
-const comntCount = document.querySelector('.cmnt-num');
 
 
+
+//Getting video statistics like view counts and likes
 async function getVideoStatistics(videoId) {
   const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`;
 
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
+    
 
     if (data.items && data.items.length > 0) {
       
@@ -232,14 +227,13 @@ async function getVideoStatistics(videoId) {
   }
 }
  
-
+// fetching comments using Youtube Comment API
 function fetchVideoComments(videoId) {
   const apiUrl = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${apiKey}`;
 
   return fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       return data.items;
       
     })
@@ -249,23 +243,122 @@ function fetchVideoComments(videoId) {
     });
 }
 
-const commentContainer = document.querySelector(".video-cmnt")
+
+// Adding comments to the video Watch page
+
 function displayVideoComment(comments){
 
-  comments.map(cmnt => {
+  comments.map(item => {
     const commentText = document.createElement('div');
-    const comment = cmnt.snippet.topLevelComment.snippet.textOriginal;
-    const authorName = cmnt.snippet.topLevelComment.snippet.authorDisplayName;
-    commentText.innerHTML =`<div class='comment-text'>
-      <span class="cmnt-img" ><img src="./assets/images/IconAlanCooper.svg" alt="user-image"></span>
+    const comment = item.snippet.topLevelComment.snippet.textOriginal;
+    const publishedAt = new Date(item.snippet.topLevelComment.snippet.publishedAt);
+    const timeAgo = calculateTimeAgo(publishedAt);
+    
+    //[1].snippet.topLevelComment.snippet.textOriginal
+    const authorName = item.snippet.topLevelComment.snippet.authorDisplayName.substring(1);
+    commentText.innerHTML =`
+    <div class='comment-text'>
+      <span class="cmnt-img" >
+        <img src="./assets/images/IconAlanCooper.svg" alt="user-image">
+      </span>
       <span>
-        <div class="cmnt-user-name"> <span><b>${authorName}</b> </span> <span>${time} ago</span> </div>
+        <div class="cmnt-user-name">
+          <span><b>${authorName}</b> </span>
+          <span> ${timeAgo}</span>
+        </div>
         <p>${comment}<p/>
-          </span>
+      </span>
+      <div class="like-dislike">
+        <span><span class="material-symbols-outlined">
+                thumb_up
+                </span>
+
+        </span>
+        <span><span class="material-symbols-outlined">
+                thumb_down
+                </span>
+        </span>
+        <span>Reply</span>
+        </div>
         
-      </div>`
+    </div>`;
     commentContainer.appendChild(commentText);
   })
+}
+
+async function fetchRelevantResults(searchString) {
+  //searcString is the search input user entering
+  const endPoint = `${baseUrl}/search?key=${apiKey}&q=${searchString}&part=snippet&maxResults=20`;
+  console.log(`searchValue:  ${searchString}`);
+  try {
+    const response = await fetch(endPoint);
+    const result = await response.json();
+    setRelatedVideos(result.items);
+    console.log(result.items, "relevant result");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const RelatedVideos = document.querySelector('.suggestion-container');
+function setRelatedVideos(arr){
+  arr.forEach(video => {
+    const RelatedVideo = document.createElement('div');
+    RelatedVideo.addEventListener("click", (event)=>{
+      console.log("clicked")
+       event.preventDefault();
+       const videoIdToSave = video.id.videoId;
+       getVideoStatistics(videoIdToSave);
+       
+       openVideoPage(videoIdToSave, video.snippet.title, video.snippet.channelTitle);
+     },{passive:true})
+  RelatedVideo.className = 'related-video';
+  RelatedVideo.innerHTML= `<span class="related-vid-img">
+                <img class="rel-vid-img" src="${video.snippet.thumbnails.medium.url}" alt="thumbnail" />
+                <p class="timeStamp">5:10</p>
+                </span>
+  <span class="details">
+    <div class="vidTitle">
+       ${video.snippet.title}
+      </div>
+      <div class="chnl-name">${video.snippet.channelTitle}</div>
+      <div class="upload-time">35M views • ${calculateTheTimeGap(video.snippet.publishTime)}</div>
+    
+  </span>
+  `;
+
+  RelatedVideos.appendChild(RelatedVideo);
+
+
+
+  });
+  
+
+}
+
+
+function calculateTimeAgo(publishedAt) {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - publishedAt) / 1000);
+
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds} seconds ago`;
+  } else if (diffInSeconds < 3600) {
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    return `${diffInMinutes} minutes ago`;
+  } else if (diffInSeconds < 86400) {
+    const diffInHours = Math.floor(diffInSeconds / 3600);
+    return `${diffInHours} hours ago`;
+  } else if (diffInSeconds < 2592000) {
+    const diffInDays = Math.floor(diffInSeconds / 86400);
+    return `${diffInDays} days ago`;
+  } else if (diffInSeconds < 31536000) {
+    const diffInMonths = Math.floor(diffInSeconds / 2592000);
+    return `${diffInMonths} months ago`;
+  } else {
+    const diffInYears = Math.floor(diffInSeconds / 31536000);
+    return `${diffInYears} years ago`;
+  }
 }
       </script>
     
